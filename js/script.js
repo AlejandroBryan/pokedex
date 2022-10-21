@@ -1,12 +1,30 @@
-alert("Hello World!")
+let pokemonList = [
+    {
+        name: "Bulbasaur",
+        height: .7,
+        weight: 6.9,
+        types: ['grass, poison'],
+        abilities:['Chlorophyll', 'Overgrow']
+        
 
-let app = document.querySelector('#app');
- let  favoriteFood = "Dönner Kebap";
- const firstName = 'Alejandro';
- const lastName = 'Bryan';
- const age = 32;
- 
- app.innerHTML =  `<p class="text-center">  My Name ${firstName} ${lastName}, I'm ${age} year old. </p>`;
+    },
+    {
+        name: 'Charmander',
+        height: .6,
+        weight: 8.5,
+        types: 'fire',
+        abilities: ['blaze', 'solar-power']
+    },
+    {
+        name: 'Onix',
+        height: 8.8,
+        weight: 210,
+        types: ['rock, ground'],
+        abilities: ['sturdy', 'rock-Headers', 'weak-armor']
+    }
 
+];
 
- document.write(' <p class="text-center">My favorite food is ',  favoriteFood, ' &#128523; </p>');
+console.log(pokemonList[2].name);
+console.log(pokemonList[1].name);
+console.log(pokemonList[0].name);
