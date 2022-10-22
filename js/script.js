@@ -12,7 +12,7 @@ let pokemonList = [
         name: 'Charmander',
         height: .6,
         weight: 8.5,
-        types: 'fire',
+        types: ['fire'],
         abilities: ['blaze', 'solar-power']
     },
     {
