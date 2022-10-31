@@ -62,9 +62,11 @@ let item2 =   {
 let pokemonRepository = (function(){
 
     let pokemonList = [];
+    let filteredPokemon = [];
 
 // add items to the 
-     function add ( item ) {
+
+    function add ( item ) {
        if(item !== undefined){
         return addVerification(item)
 
@@ -73,6 +75,7 @@ let pokemonRepository = (function(){
     }
 
  // display to the cosonle
+
     function  getAll() {
         return pokemonList;
        
@@ -91,7 +94,7 @@ let pokemonRepository = (function(){
         }  
          else {
             return pokemonList.push(item)  
-            //print(`${getAll().length} item have been successfully added`)
+            
         }
 
     }
@@ -99,7 +102,8 @@ let pokemonRepository = (function(){
 
     return{
         add: add,
-        getAll: getAll,
+        getAll: getAll
+        
     }
 
 })();
@@ -111,12 +115,11 @@ let pokemonRepository = (function(){
 
 pokemonRepository.add(item1)
 pokemonRepository.add(item2)
-pokemonRepository.add(item2)
-pokemonRepository.add(item3)
 pokemonRepository.add(item3)
 pokemonRepository.add(item4)
 
 const pokemonList = pokemonRepository.getAll()
+ 
 
 pokemonList.forEach(displayUI);
 pokemonList.forEach(print);
