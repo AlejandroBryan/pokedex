@@ -1,162 +1,114 @@
-const app = document.querySelector('#app');
-let markUp = ' ';
 
 
-let item1 =     {
-    name: "Bulbasaur",
-    index: 1,
-    height: .7,
-    weight: 6.9,
-    image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-    types: ['grass', 'poison'],
-    abilities:['chlorophyll', 'overgrow']
-    
-
-}
-
-let item2 =   {
-    name: "Charmander",
-    index: 4,
-    height: 0.6,
-    weight: 8.5,
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-    types: [
-      "fire"
-    ],
-    abilities: [
-      "blaze",
-      "solar-power"
-    ]
-  }
-
-  let item3 = {
-    name: "Butterfree",
-    index: 12,
-    height: 1.1,
-    weight: 32,
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
-    types: [
-      "bug",
-      "flying"
-    ],
-    abilities: [
-      "compoundeyes",
-      "tinted-EVs: lens"
-    ]
-  }
-
-  let item4 = {
-    name: "Picachu",
-    index: 25,
-    height: 0.4,
-    weight: 6,
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-    types: ["electric"],
-    abilities: [
-      "static",
-      "lightinngrod"
-    ]
-  }
-   
-
+  
 let pokemonRepository = (function(){
 
     let pokemonList = [];
-    let filteredPokemon = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+    
+// printing to the console
+    const print = ( arg) => console.log(arg);
+       
+        
 
 // add items to the 
 
-    function add ( item ) {
-       if(item !== undefined){
-        return addVerification(item)
-
+    function add (pokemon) {
+       if(pokemon){
+        return addVerification(pokemon)
        }   
        return `Please add you the parameter type of object`      
     }
 
- // display to the cosonle
-
+ // display to the console
     function  getAll() {
-        return pokemonList;
-       
+        return pokemonList;   
+    }
+
+ //fetch the data from the pokemon`s api  
+     function loadPokemon(){
+
+        return fetch(apiUrl)
+        .then(res =>  res.json())                   
+        .then((data)=>{
+             data.results.forEach(pokemons => {
+             let pokemon = {
+                             name: pokemons.name,
+                             url: pokemons.url
+                            }
+                          
+                            this.add(pokemon)          
+                         });
+
+          })
+    }
+
+
+// the printPokemonEvent function
+    function printPokemonEvent(element, pokemon){
+        return element.addEventListener('click', ()=> showDetails(pokemon))
+    }
+
+    function addListItem( pokemon ) {
+      const button = document.createElement('button');
+      button.classList.add('detail__button')
+      button.innerText = pokemon.name;
+      // invoke the printPokemonEvent function
+      printPokemonEvent(button, pokemon)
+
+      let listItem = document.createElement('li');
+      listItem.appendChild(button);
+      
+      const pokeList = document.querySelector('.pokemon__list')
+      pokeList.appendChild(listItem)
+
+    }
+
+   function showDetails(pokemon){
+
+      return fetch(pokemon.url)
+                  .then(res =>res.json())
+                  .then((data)=>print(data))
+      
     }
 
  // verify the inputs before pushing to the 
-    function addVerification( item ) {
+    function addVerification( pokemon ) {
 
-        if ( !item.name && !item.types
-             && !item.height && !item.weight 
-             && !item.image &&  !item.abilities && !item.index ) {
-            return print(`Plesse make sure you are adding all the properties to the object `)
+        if ( !pokemon.name && !pokemon.height && !pokemon.image ) {
+            return print(`Please make sure you are adding all the properties to the object `)
         }
-         else if( Object.keys(item).length < 7 ) {
-            return print(`Please make sure ${item} contain a least 7 properties`) 
-        }  
          else {
-            return pokemonList.push(item)  
+            return pokemonList.push(pokemon)  
             
         }
 
     }
 
-
-    return{
+    return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        loadPokemon: loadPokemon,
+        addListItem : addListItem
         
     }
 
 })();
-
-
-
-
-
-
-pokemonRepository.add(item1)
-pokemonRepository.add(item2)
-pokemonRepository.add(item3)
-pokemonRepository.add(item4)
-
-const pokemonList = pokemonRepository.getAll()
  
+const pokemonList = pokemonRepository;
 
-pokemonList.forEach(displayUI);
-pokemonList.forEach(print);
+pokemonList.loadPokemon().then(()=>{
+    pokemonList.getAll().forEach((pokemon)=>{
+        pokemonList.addListItem(pokemon)
 
-function displayUI (item){
- 
-    const {image, types, index, name, abilities, height, weight } = item;
-
-    markUp += `
-    <div class="card">
-        <span class="avatar" style="background-image: url(${image}); background-repeat: no-repeat;background-size: cover; background-position: center center"></span>
-
-        <span class="index">#${index}</span>
-        <div class="types-list"> 
-        ${renderElements('types', types)}
-        </div>
-        <div class="card-body">
-            <h2>${name} Height: ${height >= 1 ? height  + ' - Wow that\'s big!' : height  + ' '}</h2>
-            <div>Weight: ${weight}</div>
-            <h4>Abilities</h4>
-            <div class="label-list">
-            ${renderElements('label', abilities)}
-            </div>
-        </div>
-
-    </div> 
-`;
- app.innerHTML = markUp;
-
-}
+    })
+})
 
 
-function renderElements(className, elements) {
-    return ` ${elements.map(element => `<div class="${className}"> *${element} </div>`).join(' ')} `;
-}
 
-function print( arg){
- console.log(arg);
- }
+  
+
+
+
+
 

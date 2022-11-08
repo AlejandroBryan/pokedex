@@ -85,7 +85,31 @@ body {
     background-color: rgba(248, 156, 122, 0.829);
 }
 
+.pokemon__list{
+    width: 100%
 
+}
+
+.pokemon__list > li{
+    width: 100%;
+    list-style: none;
+    display: block;
+}
+
+.detail__button{
+    font-size: large;
+    margin: 12px 0;
+    text-transform: capitalize;
+    width: 100%;
+    background-color: transparent;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.detail__button:hover{
+    background-color: azure;
+}
 .avatar{
     display: block;
     height: 250px;
@@ -95,9 +119,11 @@ body {
 }
 @media screen and (min-width: 769px) {
     .container{
-        width: 80%;
+        width: 50%;
         display: block;
         margin-left: auto;
+        margin-right: auto;
+        padding: 0;
        
     }
     #app{
