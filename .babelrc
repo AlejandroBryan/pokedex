@@ -2,7 +2,7 @@
     "presets":[
       "@babel/preset-env"
     ],
-    "ignore": ["src/js/index.js"]
+    "ignore": ["src/js/index.js", "src/index.html"]
     
     
 }
