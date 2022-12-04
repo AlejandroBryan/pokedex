@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
+    "sass": "node-sass src/scss/style.scss -o src/css",
     "babel": "babel ./src --out-dir dist",
-    "dev": "npm run clean && npm run babel && set NODE_ENV=development && webpack -w --mode development",
-    "build": "npm run clean && npm run babel && set NODE_ENV=production && webpack --mode  production",
-    "lint": "eslint -c .eslintrc --ext .js src/js/*",
+    "dev": "npm run clean && npm run babel && npm run sass && webpack-dev-server --config config/webpack.dev.js --open",
+    "build": "npm run clean && npm run babel && webpack --config config/webpack.prod.js",
+    "lint": "eslint -c .eslintrc --ext .js src",
     "fix": "eslint --fix --ext .js src ",
-    "format": "prettier --config .prettierrc --write src/js/*.js"
+    "format": "prettier --config .prettierrc --write .js src/js"
   },
   "repository": {
     "type": "git",
@@ -51,17 +52,24 @@
     "html-webpack-plugin": "^5.5.0",
     "ignore-emit-webpack-plugin": "^2.0.6",
     "mini-css-extract-plugin": "^2.7.0",
+    "node-sass": "^8.0.0",
     "postcss-loader": "^7.0.1",
     "prettier": "^2.7.1",
     "purgecss-webpack-plugin": "^5.0.0",
+    "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.11.1",
     "webpack-fix-style-only-entries": "^0.6.1",
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.2",
+    "jquery": "^3.6.1",
+    "popper.js": "^1.16.1",
     "promise-polyfill": "8.2.3",
     "whatwg-fetch": "^3.6.2"
   }

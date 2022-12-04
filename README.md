@@ -24,6 +24,12 @@ npm install
 npm run dev
 
 this command will create a folder called dist/ which contain development files 
+and it will automatically open your project on port http://localhost:8080
+
+4- make production ready
+
+npm run build 
+this command will create a folder called dist/ which contain production ready minified files 
 
 
 ```
