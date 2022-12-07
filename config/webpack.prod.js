@@ -2,8 +2,8 @@ const {join, resolve}= require("path");
 const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const TerserPlugin = require("terser-webpack-plugin");
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const  HtmlWebpackPlugin = require("html-webpack-plugin");
 const {jsSrc, cssSrc } = require('../config/utils')
@@ -49,8 +49,8 @@ module.exports = merge(common, {
     ]
   },
   plugins: [
+    new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({ filename: "[name].min.css" }),
-    new FixStyleOnlyEntriesPlugin(),
     new CssMinimizerPlugin()
   ],
   module: {

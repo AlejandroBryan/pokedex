@@ -4,7 +4,7 @@ import 'bootstrap';
 
 const pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=90&limit=12';
 
   // printing to the console
   const print = (arg) => console.log(arg);
@@ -74,8 +74,8 @@ const pokemonRepository = (function () {
   function showModal(pokemon) {
     let modalBody = document.querySelector('.modal-body');
     modalBody.innerHTML = '';
+
     let modalHeader = document.querySelector('.modal-title');
-    modalHeader.classList.add('text-capitalize');
     modalHeader.textContent = pokemon.name;
 
     let typesList = document.createElement('div');
