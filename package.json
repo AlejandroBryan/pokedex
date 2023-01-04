@@ -6,12 +6,13 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "sass": "node-sass src/scss/style.scss --output-style compact -o src/css",
-    "babel": "babel ./src --out-dir dist",
-    "dev": "npm run clean && npm run babel && npm run sass && webpack-dev-server --config config/webpack.dev.js --open",
-    "build": "npm run clean && npm run babel  && npm run sass && webpack --config config/webpack.prod.js",
+    "babel-dev": "babel ./src --out-dir dist",
+    "babel-build": "babel ./src --out-dir docs",
+    "dev": "npm run clean && npm run babel-dev && npm run sass && webpack-dev-server --config config/webpack.dev.js --open",
+    "build": "npm run clean && npm run babel-build  && npm run sass && webpack --config config/webpack.prod.js",
     "lint": "eslint -c .eslintrc --ext .js src",
     "fix": "eslint --fix --ext .js src ",
-    "format": "prettier --config .prettierrc --write .js src/js"
+    "format": "prettier --config .prettierrc --write  src/js/*.js"
   },
   "repository": {
     "type": "git",

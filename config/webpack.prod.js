@@ -17,7 +17,7 @@ module.exports = merge(common, {
    }, 
   output: {
     filename: "[name].min.js",
-    path: resolve(__dirname, "../dist")
+    path: resolve(__dirname, "../docs")
   },
   optimization: {
     minimize: true,
