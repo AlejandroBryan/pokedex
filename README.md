@@ -13,7 +13,7 @@ make sure to have already installed the followings programs on your computer Nod
 ```css
 1- clone the repository.
 
-git clone https://github.com/AlejandroBryan/simple-js-app.git
+git clone https://github.com/AlejandroBryan/pokedex.git
 
 2- install all dependencies  and devdependencies.
 
